@@ -1,6 +1,6 @@
-# LoRA DPO LLaMa-7B
+# PrefDrive: LoRA DPO LLaMa-7B for Autonomous Driving
 
-This repository contains the LoRA (Low-Rank Adaptation) parameters for LLaMa-7B fine-tuned with Direct Preference Optimization (DPO). These parameters can be used to enhance the base model's capabilities by better aligning it with human preferences.
+This repository contains the LoRA (Low-Rank Adaptation) parameters for LLaMa-7B fine-tuned with Direct Preference Optimization (DPO). Our framework, PrefDrive, integrates specific driving preferences into autonomous driving models through large language models, significantly improving performance across multiple metrics including distance maintenance, trajectory smoothness, and traffic rule compliance.
 
 ## Table of Contents
 
@@ -9,11 +9,23 @@ This repository contains the LoRA (Low-Rank Adaptation) parameters for LLaMa-7B 
 - [Usage](#usage)
 - [Training](#training)
 - [Model Details](#model-details)
+- [Methodology](#methodology)
+- [Dataset](#dataset)
 - [License](#license)
 
 ## Overview
 
-This LoRA adapter was trained using Direct Preference Optimization (DPO) on pairwise preference data. DPO allows for directly aligning language models with human preferences without requiring a separate reward model, as is typical in RLHF approaches.
+Recent advances in Large Language Models (LLMs) have shown promise in autonomous driving, but existing approaches often struggle to align with specific driving behaviors (e.g., maintaining safe distances, smooth acceleration patterns) and operational requirements (e.g., traffic rule compliance, route adherence).
+
+PrefDrive addresses this challenge by:
+1. Developing a preference learning framework that combines multimodal perception with natural language understanding
+2. Leveraging Direct Preference Optimization (DPO) to fine-tune LLMs efficiently on consumer-grade hardware
+3. Training on a comprehensive dataset of 74,040 driving sequences with annotated preferences
+
+Through extensive experiments in the CARLA simulator, we demonstrate that our preference-guided approach significantly improves driving performance, with up to:
+- 28.1% reduction in traffic light violations
+- 8.5% improvement in route completion
+- 63.5% reduction in layout collisions
 
 The model is available on Hugging Face: [YOUR_USERNAME/lora-dpo-llama-7b](https://huggingface.co/YOUR_USERNAME/lora-dpo-llama-7b)
 
@@ -107,11 +119,70 @@ python train_dpo.py --help
 - **Base Model**: meta-llama/Llama-2-7b
 - **LoRA Configuration**:
   - Rank (r): 16
-  - Alpha: 16
+  - Alpha (α): 16
   - Target Modules: q_proj, k_proj, v_proj, o_proj, gate_proj, down_proj, up_proj
 - **DPO Configuration**:
-  - Beta: 0.1
-  - Loss Type: exo_pair
+  - Beta (β): 0.1
+  - Loss Type: Sigmoid
+
+### Training Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| Base Model | LLaMA2-7B |
+| Training Strategy | LoRA |
+| Learning Rate | 1e-5 |
+| Batch Size | 4 |
+| Gradient Accumulation Steps | 2 |
+| Training Epochs | 3 |
+| Maximum Sequence Length | 2,048 |
+| Warmup Ratio | 0.1 |
+| Max Gradient Norm | 0.3 |
+
+### Performance Results
+
+#### Town 01
+| Metric | LMDrive (baseline) | PrefDrive (Ours) | Improvement |
+|--------|-------------------|-----------------|-------------|
+| Composite Score | 53.00 | 56.12 | +5.9% |
+| Route Completion | 59.10 | 64.15 | +8.5% |
+| Layout Collisions | 0.73 | 0.27 | -63.5% |
+| Traffic Light Violations | 0.22 | 0.16 | -28.1% |
+
+#### Town 04
+| Metric | LMDrive (baseline) | PrefDrive (Ours) | Improvement |
+|--------|-------------------|-----------------|-------------|
+| Composite Score | 60.11 | 65.93 | +9.7% |
+| Route Completion | 65.25 | 69.93 | +7.2% |
+| Traffic Light Violations | 0.24 | 0.00 | -100.0% |
+
+## Methodology
+
+The PrefDrive methodology for autonomous driving is formulated as:
+
+$\mathcal{L}_{DPO} = -\mathbb{E}_{(s,a_p,a_r)\sim\mathcal{D}}\Big[\log\sigma\Big(\beta\log\frac{\pi_\theta(a_p|s)}{\pi_{ref}(a_p|s)} - \beta\log\frac{\pi_\theta(a_r|s)}{\pi_{ref}(a_r|s)}\Big)\Big]$
+
+where:
+- $\mathcal{D}$ represents our driving preference dataset
+- $s$ denotes the current driving scenario description
+- $a_p$ represents the preferred (chosen) driving action with its reasoning and resulting waypoint
+- $a_r$ represents the rejected driving action with its reasoning and resulting waypoint
+- $\pi_\theta$ is the policy model being trained
+- $\pi_{ref}$ is the initial reference model
+- $\beta$ controls the preference learning sensitivity (set to 0.1)
+- $\sigma$ represents the sigmoid function
+
+This formulation explicitly shows how our model learns to favor chosen driving actions over rejected ones while maintaining reasonable deviation from the reference model's behavior.
+
+## Dataset
+
+Our comprehensive dataset consists of 74,040 driving sequences, carefully annotated with driving preferences and driving decisions. Each sequence contains:
+
+- A detailed driving scenario description
+- A preferred/chosen driving action with reasoning and waypoint
+- A rejected driving action with reasoning and waypoint
+
+The dataset captures various autonomous driving scenarios with emphasis on proper distance maintenance, trajectory smoothness, traffic rule compliance, and route adherence.
 
 ## License
 
