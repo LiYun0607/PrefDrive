@@ -27,7 +27,7 @@ Through extensive experiments in the CARLA simulator, we demonstrate that our pr
 - 8.5% improvement in route completion
 - 63.5% reduction in layout collisions
 
-The model is available on Hugging Face: [YOUR_USERNAME/lora-dpo-llama-7b](https://huggingface.co/YOUR_USERNAME/lora-dpo-llama-7b)
+The model is available on Hugging Face: https://huggingface.co/liyun0607/PrefDrive
 
 ## Installation
 
