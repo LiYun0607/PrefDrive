@@ -202,13 +202,4 @@ If you use this model in your research, please cite:
       archivePrefix={arXiv},
       primaryClass={cs.LG}
 }
-
-@misc{hu2021lora,
-      title={LoRA: Low-Rank Adaptation of Large Language Models}, 
-      author={Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi Li and Shean Wang and Lu Wang and Weizhu Chen},
-      year={2021},
-      eprint={2106.09685},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
 ```
