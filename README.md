@@ -1,6 +1,6 @@
-# PrefDrive: LoRA DPO LLaMa-7B for Autonomous Driving
+# PrefDrive: PrefDrive: Enhancing Autonomous Driving through Preference-Guided Large Language Models
 
-This repository contains the LoRA (Low-Rank Adaptation) parameters for LLaMa-7B fine-tuned with Direct Preference Optimization (DPO). Our framework, PrefDrive, integrates specific driving preferences into autonomous driving models through large language models, significantly improving performance across multiple metrics including distance maintenance, trajectory smoothness, and traffic rule compliance.
+This repository contains the LoRA (Low-Rank Adaptation) checkpoints, datset, training codes for LLaMa2-7B fine-tuned with Direct Preference Optimization (DPO). Our framework, PrefDrive, integrates specific driving preferences into autonomous driving models through large language models, significantly improving performance across multiple metrics including distance maintenance, trajectory smoothness, and traffic rule compliance.
 
 ## Table of Contents
 
