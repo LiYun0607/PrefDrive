@@ -59,7 +59,7 @@ Through extensive experiments in the CARLA simulator, we demonstrate that our pr
 
 ## Methodology
 
-![PrefDrive Architecture](https://github.com/user-attachments/files/19589913/system-structure.pdf)
+![PrefDrive Architecture](https://github.com/LiYun0607/PrefDrive/blob/main/assets/PrefDrive_Architecture.png)
 
 
 The PrefDrive methodology for autonomous driving is formulated as:
