@@ -44,13 +44,13 @@ pip install transformers peft torch unsloth
 from peft import PeftModel, PeftConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Load base model
-base_model_id = "meta-llama/Llama-2-7b"
+# Load base model, we need the hugging face (hf)-based version
+base_model_id = "meta-llama/Llama-2-7b-hf"
 tokenizer = AutoTokenizer.from_pretrained(base_model_id)
 model = AutoModelForCausalLM.from_pretrained(base_model_id)
 
 # Load LoRA adapter
-peft_model_id = "YOUR_USERNAME/lora-dpo-llama-7b"
+peft_model_id = "liyun0607/PrefDrive"
 model = PeftModel.from_pretrained(model, peft_model_id)
 
 # Use model for inference
@@ -74,7 +74,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 # Load LoRA adapter
 model = FastLanguageModel.get_peft_model(
     model,
-    "YOUR_USERNAME/lora-dpo-llama-7b",
+    "liyun0607/PrefDrive",
 )
 
 # Use model for inference
