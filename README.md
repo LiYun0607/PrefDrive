@@ -28,6 +28,7 @@ Through extensive experiments in the CARLA simulator, we demonstrate that our pr
 - 63.5% reduction in layout collisions
 
 The model is available on Hugging Face: https://huggingface.co/liyun0607/PrefDrive
+The dataset is avaliable on Hugging Face: https://huggingface.co/datasets/liyun0607/PrefDrive
 
 ## Installation
 
