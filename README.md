@@ -1,6 +1,6 @@
 # PrefDrive: Enhancing Autonomous Driving through Preference-Guided Large Language Models
 
-This repository contains the LoRA (Low-Rank Adaptation) [checkpoints]((https://huggingface.co/liyun0607/PrefDrive)), [dataset]((https://huggingface.co/liyun0607/PrefDrive)), and training code for LLaMa2-7B fine-tuning with [Direct Preference Optimization (DPO) algorithm](https://arxiv.org/abs/2305.18290). Our framework, PrefDrive, integrates driving preferences into autonomous driving models through large language models, significantly improving performance across multiple metrics including distance maintenance, trajectory smoothness, and traffic rule compliance.
+This repository contains the LoRA (Low-Rank Adaptation) [checkpoints](https://huggingface.co/liyun0607/PrefDrive), [dataset](https://huggingface.co/liyun0607/PrefDrive), and training code for LLaMa2-7B fine-tuning with [Direct Preference Optimization (DPO) algorithm](https://arxiv.org/abs/2305.18290). Our framework, PrefDrive, integrates driving preferences into autonomous driving models through large language models, significantly improving performance across multiple metrics including distance maintenance, trajectory smoothness, and traffic rule compliance.
 
 ## Table of Contents
 
