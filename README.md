@@ -91,7 +91,7 @@ The dataset captures various autonomous driving scenarios with emphasis on prope
 If you use this model or dataset in your research, please cite:
 
 ```bibtex
-@INPROCEEDINGS{Zheng2024-rq,
+@INPROCEEDINGS{Li2025,
   title={PrefDrive: A Preference Learning Framework for Autonomous Driving with Large Language Models}, 
   author={Li, Yun and Javanmardi, Ehsan and Thompson, Simon and Katsumata, Kai and Orsholits, Alex and Tsukada, Manabu},
   booktitle = "{2025 IEEE Intelligent Vehicles Symposium (IV)}",
