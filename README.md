@@ -1,6 +1,6 @@
 # PrefDrive: Enhancing Autonomous Driving through Preference-Guided Large Language Models
 
-This repository contains the LoRA (Low-Rank Adaptation) checkpoints, dataset, and training code for LLaMa2-7B fine-tuned with Direct Preference Optimization (DPO). Our framework, PrefDrive, integrates specific driving preferences into autonomous driving models through large language models, significantly improving performance across multiple metrics including distance maintenance, trajectory smoothness, and traffic rule compliance.
+This repository contains the LoRA (Low-Rank Adaptation) [checkpoints]((https://huggingface.co/liyun0607/PrefDrive)), [dataset]((https://huggingface.co/liyun0607/PrefDrive)), and training code for LLaMa2-7B fine-tuning with [Direct Preference Optimization (DPO) algorithm](https://arxiv.org/abs/2305.18290). Our framework, PrefDrive, integrates driving preferences into autonomous driving models through large language models, significantly improving performance across multiple metrics including distance maintenance, trajectory smoothness, and traffic rule compliance.
 
 ## Table of Contents
 
@@ -25,12 +25,6 @@ Through extensive experiments in the CARLA simulator, we demonstrate that our pr
 - 28.1% reduction in traffic light violations
 - 8.5% improvement in route completion
 - 63.5% reduction in layout collisions
-
-### Resources
-
-- **Model**: [liyun0607/PrefDrive](https://huggingface.co/liyun0607/PrefDrive)
-- **Dataset**: [liyun0607/PrefDrive](https://huggingface.co/datasets/liyun0607/PrefDrive)
-- **Code**: [LiYun0607/PrefDrive](https://github.com/LiYun0607/PrefDrive)
 
 ## Model Details
 
@@ -60,23 +54,6 @@ Through extensive experiments in the CARLA simulator, we demonstrate that our pr
 ## Methodology
 
 ![PrefDrive Architecture](https://github.com/LiYun0607/PrefDrive/blob/main/assets/PrefDrive_Architecture.png)
-
-
-The PrefDrive methodology for autonomous driving is formulated as:
-
-```
-L_DPO = -E_{(s,a_p,a_r)~D}[log σ(β log(π_θ(a_p|s)/π_ref(a_p|s)) - β log(π_θ(a_r|s)/π_ref(a_r|s)))]
-```
-
-where:
-- D represents our driving preference dataset
-- s denotes the current driving scenario description
-- a_p represents the preferred (chosen) driving action with its reasoning and resulting waypoint
-- a_r represents the rejected driving action with its reasoning and resulting waypoint
-- π_θ is the policy model being trained
-- π_ref is the initial reference model
-- β controls the preference learning sensitivity (set to 0.1)
-- σ represents the sigmoid function
 
 This formulation explicitly shows how our model learns to favor chosen driving actions over rejected ones while maintaining reasonable deviation from the reference model's behavior.
 
@@ -118,24 +95,6 @@ If you use this model or dataset in your research, please cite:
       title={PrefDrive: A Preference Learning Framework for Autonomous Driving with Large Language Models}, 
       author={Li, Yun and Javanmardi, Ehsan and Thompson, Simon and Katsumata, Kai and Orsholits, Alex and Tsukada, Manabu},
       year={2025},
-      journal={Proceedings of the IEEE International Conference on Robotics and Automation},
-}
-
-@misc{rafailov2023direct,
-      title={Direct Preference Optimization: Your Language Model is Secretly a Reward Model}, 
-      author={Rafael Rafailov and Archit Sharma and Eric Mitchell and Stefano Ermon and Christopher D. Manning and Chelsea Finn},
-      year={2023},
-      eprint={2305.18290},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
-}
-
-@misc{hu2021lora,
-      title={LoRA: Low-Rank Adaptation of Large Language Models}, 
-      author={Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi Li and Shean Wang and Lu Wang and Weizhu Chen},
-      year={2021},
-      eprint={2106.09685},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+      journal={IEEE Intelligent Vehicles Symposium (IV)},
 }
 ```
