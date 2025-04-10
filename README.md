@@ -53,7 +53,7 @@ Through extensive experiments in the CARLA simulator, we demonstrate that our pr
 
 ## Methodology
 
-![PrefDrive Architecture](https://github.com/LiYun0607/PrefDrive/blob/main/assets/PrefDrive_Architecture.png)
+![PrefDrive Architecture](https://github.com/LiYun0607/PrefDrive/blob/main/assets/DPO-system-structure.png)
 
 This formulation explicitly shows how our model learns to favor chosen driving actions over rejected ones while maintaining reasonable deviation from the reference model's behavior.
 
